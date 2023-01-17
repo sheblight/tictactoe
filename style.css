@@ -42,3 +42,14 @@ body {
     width: 70%;
     height: 70%;
 }
+
+button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: brown;
+    color:whitesmoke;
+    text-transform: uppercase;
+    font: 600 18px 'Courier New', Courier, monospace;
+}
