@@ -1,7 +1,7 @@
 'use strict';
 
 const gameBoard = (() => {
-    let gameActive = true;
+    let gameActive = false;
     let playerOneTurn = true;
     let marks = new Array(9);
     

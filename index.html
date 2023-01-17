@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>It's P1's turn.</h1>
+    <h1>Enter your names below and start.</h1>
     <div class="board">
         <div class="slot" data-slot="0">
             <svg class="cross hidden" viewBox="0 0 24 24">
@@ -83,8 +83,20 @@
             </svg>
         </div>
     </div>
-    <h2>You know the rules.</h2>
-    <button>Reset</button>
+    <div class="action">
+        <div class="field">
+            <h2>P1</h2>
+            <input class="name" type="text" name="p1-name" id="p1-name" placeholder="Enter P1 name here">
+        </div>
+        <button>Start</button>
+        <div class="field">
+            <h2 style="text-align:right">P2</h2>
+            <input class="name" type="text" name="p2-name" id="p2-name" placeholder="Enter P2 name here">
+        </div>
+    </div>
+    
+    
+    
     <script src="script.js"></script>
 </body>
 </html>

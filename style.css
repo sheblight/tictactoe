@@ -14,8 +14,8 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 500px;
-    height: 500px;
+    width: min(70vw, 500px);
+    height: min(70vw, 500px);
     /*margin-left: calc(50% - 300px);*/
     border-radius: 10px;
     border: 3px solid black;
@@ -43,8 +43,16 @@ body {
     height: 70%;
 }
 
+.action {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-top: 20px;
+    width: min(80vw, 700px);
+}
+
 button {
-    width: 200px;
+    width: 130px;
     height: 50px;
     border: none;
     border-radius: 5px;
@@ -52,4 +60,13 @@ button {
     color:whitesmoke;
     text-transform: uppercase;
     font: 600 18px 'Courier New', Courier, monospace;
+}
+
+h2 {
+    margin: 0 auto 10px;
+}
+
+input {
+    width: 150px;
+    height: 25px;
 }
