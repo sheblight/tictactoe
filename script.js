@@ -19,35 +19,57 @@ const gameBoard = (() => {
         return currentPlayerWins;
     }
 
+    const logMessage = function(text) {
+        let h1 = document.querySelector("h1");
+        h1.textContent = text;
+    }
+
     const playerMark = function() {
         if (!gameActive) return;
         let number = Number(this.dataset.slot);
         
-        if (marks[number] == undefined) {
-            let revealNode = this.querySelector(getClassMark());
-            revealNode.classList.remove("hidden");
-            marks[number] = getMark();
-            console.log(`Slot marked: ${number}`);
-            if (evaluateWinner()) {
-                console.log(`${playerOneTurn ? "P1" : "P2"} wins!`);
-                gameActive = false;
-            }
-            else if (!marks.includes(undefined)) {
-                console.log("It's a tie!");
-                gameActive = false;
-            }
-            playerOneTurn = !playerOneTurn;
+        // Return if slot is already marked
+        if (marks[number] != undefined) {
+            console.log("Slot already marked.");
+            return;
+        }
+        let revealNode = this.querySelector(getClassMark());
+        revealNode.classList.remove("hidden");
+        marks[number] = getMark();
+        
+        // Evaluate winner, tie, or proceed the game
+        if (evaluateWinner()) {
+            logMessage(`${playerOneTurn ? "P1" : "P2"} wins!`);
+            gameActive = false;
+        }
+        else if (!marks.includes(undefined)) {
+            logMessage("It's a tie!");
+            gameActive = false;
         }
         else {
-            console.log("Slot already marked.");
+            playerOneTurn = !playerOneTurn;
+            logMessage(`It's ${playerOneTurn ? "P1" : "P2"}'s turn.`);
         }
     };
 
-    return { playerMark };
+    const resetBoard = ()=>{
+        const activeMarks = document.querySelectorAll("svg:not(.hidden)");
+        activeMarks.forEach(mark => {
+            mark.classList.add("hidden");
+        });
+        marks = new Array(9);
+        playerOneTurn = true;
+        gameActive = true;
+        logMessage(`It's ${playerOneTurn ? "P1" : "P2"}'s turn.`);
+    }
+
+    return { playerMark, resetBoard };
 })();
 
 
 const slotNodes = document.querySelectorAll(".slot");
+const buttonNode = document.querySelector("button");
 slotNodes.forEach(node => {
     node.addEventListener("click", gameBoard.playerMark, true);
 });
+buttonNode.addEventListener("click", gameBoard.resetBoard, true);
