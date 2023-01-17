@@ -26,3 +26,11 @@ body {
     color: white;
     font-size: 20px;
 }
+
+.circle {
+    color:rgb(120, 57, 202);
+}
+
+.cross {
+    color:rgb(196, 148, 60);
+}
