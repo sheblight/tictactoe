@@ -66,8 +66,22 @@ const gameBoard = (() => {
     }
 
     const startGame = function() {
-        p1 = document.getElementById("p1-name").value;
-        p2 = document.getElementById("p2-name").value;
+        console.log("Starting game!");
+        const p1Field = document.getElementById("p1-name");
+        const p2Field = document.getElementById("p2-name");
+        const p1Display = document.querySelector(".p1");
+        const p2Display = document.querySelector(".p2");
+        p1 = p1Field.value;
+        p2 = p2Field.value;
+        this.textContent = "Reset";
+        this.removeEventListener("click", startGame, true);
+        p1Field.classList.add("hidden");
+        p2Field.classList.add("hidden");
+        p1Display.classList.remove("hidden");
+        p1Display.textContent = p1;
+        p2Display.classList.remove("hidden");
+        p2Display.textContent = p2;
+        // TODO: remove name fields and display h2 text with names, remove start game from click event
     }
 
     return { playerMark, startGame, resetBoard };
