@@ -4,6 +4,8 @@ const gameBoard = (() => {
     let gameActive = false;
     let playerOneTurn = true;
     let marks = new Array(9);
+    let p1 = "P1";
+    let p2 = "P2";
     
     const getMark = _ => playerOneTurn ? "X" : "O";
     const getClassMark =  _ => playerOneTurn ? ".cross" : ".circle";
@@ -39,7 +41,7 @@ const gameBoard = (() => {
         
         // Evaluate winner, tie, or proceed the game
         if (evaluateWinner()) {
-            logMessage(`${playerOneTurn ? "P1" : "P2"} wins!`);
+            logMessage(`${playerOneTurn ? p1 : p2} wins!`);
             gameActive = false;
         }
         else if (!marks.includes(undefined)) {
@@ -48,7 +50,7 @@ const gameBoard = (() => {
         }
         else {
             playerOneTurn = !playerOneTurn;
-            logMessage(`It's ${playerOneTurn ? "P1" : "P2"}'s turn.`);
+            logMessage(`It's ${playerOneTurn ? p1 : p2}'s turn.`);
         }
     };
 
@@ -60,10 +62,15 @@ const gameBoard = (() => {
         marks = new Array(9);
         playerOneTurn = true;
         gameActive = true;
-        logMessage(`It's ${playerOneTurn ? "P1" : "P2"}'s turn.`);
+        logMessage(`It's ${playerOneTurn ? p1 : p2}'s turn.`);
     }
 
-    return { playerMark, resetBoard };
+    const startGame = function() {
+        p1 = document.getElementById("p1-name").value;
+        p2 = document.getElementById("p2-name").value;
+    }
+
+    return { playerMark, startGame, resetBoard };
 })();
 
 
@@ -72,4 +79,5 @@ const buttonNode = document.querySelector("button");
 slotNodes.forEach(node => {
     node.addEventListener("click", gameBoard.playerMark, true);
 });
+buttonNode.addEventListener("click", gameBoard.startGame, true);
 buttonNode.addEventListener("click", gameBoard.resetBoard, true);
